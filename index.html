@@ -15,10 +15,10 @@
     
     <style>
         :root {
-            /* Palette Moka by Rayane */
+            /* Palette Moka by Rayane - Optimisée Dorée */
             --moka-bg: #FDFBF8;         /* Blanc Cassé / Crème */
-            --moka-chocolate: #8B5A2B;  /* Marron Chocolat */
-            --moka-taupe: #A67C52;      /* Marron Clair / Taupe */
+            --moka-gold-deep: #7D5A2F;  /* Doré Sombre pour le texte (lisibilité) */
+            --moka-taupe: #A67C52;      /* Taupe */
             --moka-gold-start: #C59267; /* Dégradé Or Cuivré Début */
             --moka-gold-end: #E8D1B5;   /* Dégradé Or Cuivré Fin */
             --moka-white: #FFFFFF;
@@ -27,14 +27,14 @@
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--moka-bg);
-            color: var(--moka-chocolate);
+            color: var(--moka-gold-deep);
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
         }
 
         h1, h2, h3, .font-display {
             font-family: 'Playfair Display', serif;
-            color: var(--moka-chocolate);
+            color: var(--moka-gold-deep);
         }
 
         /* Animations */
@@ -52,7 +52,7 @@
         }
 
         .sidebar-overlay {
-            background: rgba(139, 90, 43, 0.2);
+            background: rgba(197, 146, 103, 0.2);
             backdrop-filter: blur(4px);
             transition: opacity 0.3s ease;
         }
@@ -81,25 +81,29 @@
             border: none;
         }
 
-        .text-moka-chocolate { color: var(--moka-chocolate); }
+        .text-moka-gold-deep { color: var(--moka-gold-deep); }
         .text-moka-taupe { color: var(--moka-taupe); }
-        .bg-moka-chocolate { background-color: var(--moka-chocolate); }
+        
+        /* Background Gradient Classes */
+        .bg-moka-gold-gradient {
+            background: linear-gradient(135deg, var(--moka-gold-start) 0%, var(--moka-gold-end) 100%);
+        }
         
         .progress-bar-gold {
             background: linear-gradient(90deg, var(--moka-gold-start), var(--moka-gold-end));
         }
         
-        .progress-bar-chocolate {
-            background-color: var(--moka-chocolate);
+        .progress-bar-gold-solid {
+            background-color: var(--moka-gold-start);
         }
 
         .card-shadow {
-            box-shadow: 0 10px 25px -5px rgba(139, 90, 43, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(197, 146, 103, 0.08);
         }
 
         .task-checkbox:checked + label .check-box {
-            background-color: var(--moka-chocolate);
-            border-color: var(--moka-chocolate);
+            background: linear-gradient(135deg, var(--moka-gold-start) 0%, var(--moka-gold-end) 100%);
+            border-color: transparent;
         }
 
         .logo-header {
@@ -134,7 +138,7 @@
             </div>
             
             <div class="space-y-1">
-                <h1 class="text-4xl font-black text-moka-chocolate uppercase tracking-tighter">Moka</h1>
+                <h1 class="text-4xl font-black text-moka-gold-deep uppercase tracking-tighter">Moka</h1>
                 <p class="text-moka-taupe opacity-90 font-medium italic">by Rayane</p>
                 <div class="pt-2">
                     <span class="px-3 py-1 bg-white border border-stone-100 rounded-full text-[10px] font-bold tracking-widest text-moka-gold-start uppercase">Configuration du Profil</span>
@@ -143,12 +147,12 @@
             
             <form id="login-form" class="space-y-4 bg-white p-8 rounded-[2.5rem] border border-stone-50 shadow-2xl text-left">
                 <div>
-                    <label class="block text-xs uppercase tracking-widest text-moka-chocolate font-black mb-2 ml-1">Identité / Nom</label>
-                    <input type="text" id="login-name" required placeholder="Ex: Rayane" class="w-full bg-stone-50 border border-stone-100 rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#C59267] transition-all text-moka-chocolate placeholder-stone-300 font-medium">
+                    <label class="block text-xs uppercase tracking-widest text-moka-gold-deep font-black mb-2 ml-1">Identité / Nom</label>
+                    <input type="text" id="login-name" required placeholder="Ex: Rayane" class="w-full bg-stone-50 border border-stone-100 rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#C59267] transition-all text-moka-gold-deep placeholder-stone-300 font-medium">
                 </div>
                 <div>
-                    <label class="block text-xs uppercase tracking-widest text-moka-chocolate font-black mb-2 ml-1">WhatsApp</label>
-                    <input type="tel" id="login-whatsapp" required placeholder="Ex: 212600000000" class="w-full bg-stone-50 border border-stone-100 rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#C59267] transition-all text-moka-chocolate placeholder-stone-300 font-medium">
+                    <label class="block text-xs uppercase tracking-widest text-moka-gold-deep font-black mb-2 ml-1">WhatsApp</label>
+                    <input type="tel" id="login-whatsapp" required placeholder="Ex: 212600000000" class="w-full bg-stone-50 border border-stone-100 rounded-2xl px-5 py-4 focus:outline-none focus:ring-2 focus:ring-[#C59267] transition-all text-moka-gold-deep placeholder-stone-300 font-medium">
                 </div>
                 <button type="submit" class="w-full btn-moka-gold py-5 rounded-2xl font-black uppercase tracking-widest hover:brightness-105 active:scale-[0.98] transition-all mt-4">
                     Créer mon profil
@@ -171,7 +175,7 @@
                         <img src="https://i.postimg.cc/V67FwHSr/7fad8d1f-9815-44c3-9d3b-0e8d11d95c71.png" class="w-full h-full rounded-full object-cover">
                     </div>
                     <div>
-                        <h3 id="sidebar-user-name" class="text-2xl font-black text-moka-chocolate">Rayane</h3>
+                        <h3 id="sidebar-user-name" class="text-2xl font-black text-moka-gold-deep">Rayane</h3>
                         <p class="text-[10px] text-moka-taupe font-black uppercase tracking-[0.2em]">☕ Focus Actif</p>
                     </div>
                 </div>
@@ -180,8 +184,8 @@
                 <div class="space-y-8">
                     <div class="bg-stone-50 p-5 rounded-3xl border border-stone-100">
                         <div class="flex justify-between text-[10px] mb-3">
-                            <span class="text-moka-chocolate font-black uppercase">Moka Daily</span>
-                            <span id="daily-progress-text" class="text-moka-chocolate font-black">0%</span>
+                            <span class="text-moka-gold-deep font-black uppercase">Moka Daily</span>
+                            <span id="daily-progress-text" class="text-moka-gold-deep font-black">0%</span>
                         </div>
                         <div class="h-2.5 w-full bg-white rounded-full overflow-hidden shadow-inner">
                             <div id="daily-progress-bar" class="h-full progress-bar-gold transition-all duration-1000 ease-out" style="width: 0%"></div>
@@ -189,36 +193,36 @@
                     </div>
                     <div class="bg-stone-50 p-5 rounded-3xl border border-stone-100">
                         <div class="flex justify-between text-[10px] mb-3">
-                            <span class="text-moka-chocolate font-black uppercase">Moka Weekly</span>
+                            <span class="text-moka-gold-deep font-black uppercase">Moka Weekly</span>
                             <span id="weekly-progress-text" class="text-moka-taupe font-black">0%</span>
                         </div>
                         <div class="h-2.5 w-full bg-white rounded-full overflow-hidden shadow-inner">
-                            <div id="weekly-progress-bar" class="h-full progress-bar-chocolate transition-all duration-1000 ease-out" style="width: 0%"></div>
+                            <div id="weekly-progress-bar" class="h-full progress-bar-gold-solid transition-all duration-1000 ease-out" style="width: 0%"></div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Navigation -->
                 <nav class="space-y-3">
-                    <button onclick="switchView('dashboard')" class="w-full flex items-center space-x-4 p-4 rounded-2xl hover:bg-stone-50 transition-all text-moka-taupe hover:text-moka-chocolate group">
+                    <button onclick="switchView('dashboard')" class="w-full flex items-center space-x-4 p-4 rounded-2xl hover:bg-stone-50 transition-all text-moka-taupe hover:text-moka-gold-deep group">
                         <i data-lucide="layout-dashboard" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
                         <span class="font-bold">Dashboard Global</span>
                     </button>
-                    <button onclick="switchView('daily')" class="w-full flex items-center space-x-4 p-4 rounded-2xl hover:bg-stone-50 transition-all text-moka-taupe hover:text-moka-chocolate group text-left">
+                    <button onclick="switchView('daily')" class="w-full flex items-center space-x-4 p-4 rounded-2xl hover:bg-stone-50 transition-all text-moka-taupe hover:text-moka-gold-deep group text-left">
                         <span class="font-bold">Moka Daily</span>
                     </button>
-                    <button onclick="switchView('weekly')" class="w-full flex items-center space-x-4 p-4 rounded-2xl hover:bg-stone-50 transition-all text-moka-taupe hover:text-moka-chocolate group">
+                    <button onclick="switchView('weekly')" class="w-full flex items-center space-x-4 p-4 rounded-2xl hover:bg-stone-50 transition-all text-moka-taupe hover:text-moka-gold-deep group">
                         <i data-lucide="calendar" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
                         <span class="font-bold">Moka Weekly</span>
                     </button>
-                    <button onclick="switchView('profile')" class="w-full flex items-center space-x-4 p-4 rounded-2xl hover:bg-stone-50 transition-all text-moka-taupe hover:text-moka-chocolate group">
+                    <button onclick="switchView('profile')" class="w-full flex items-center space-x-4 p-4 rounded-2xl hover:bg-stone-50 transition-all text-moka-taupe hover:text-moka-gold-deep group">
                         <i data-lucide="user" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
                         <span class="font-bold">Mon Profil</span>
                     </button>
                 </nav>
 
                 <div class="pt-8 border-t border-stone-100 space-y-2">
-                    <button onclick="logout()" class="w-full flex items-center space-x-4 p-4 rounded-2xl text-moka-chocolate hover:bg-stone-50 transition-all font-bold">
+                    <button onclick="logout()" class="w-full flex items-center space-x-4 p-4 rounded-2xl text-moka-gold-deep hover:bg-stone-50 transition-all font-bold">
                         <i data-lucide="users" class="w-5 h-5"></i>
                         <span>Changer de Profil</span>
                     </button>
@@ -232,14 +236,14 @@
 
         <!-- TOP BAR (NAV BAR) -->
         <header class="sticky top-0 z-30 flex items-center justify-between px-6 py-4 bg-[#FDFBF8] border-b border-stone-100">
-            <button id="menu-btn" class="p-3 bg-stone-50 hover:bg-white rounded-2xl transition-all border border-stone-100 shadow-sm text-moka-chocolate">
+            <button id="menu-btn" class="p-3 bg-stone-50 hover:bg-white rounded-2xl transition-all border border-stone-100 shadow-sm text-moka-gold-deep">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
             <div class="flex flex-col items-center">
                 <img src="https://i.postimg.cc/V67FwHSr/7fad8d1f-9815-44c3-9d3b-0e8d11d95c71.png" alt="Moka Logo" class="logo-header">
-                <div id="view-title-label" class="hidden text-[8px] font-black tracking-[0.2em] text-moka-chocolate uppercase mt-1">Dashboard Global</div>
+                <div id="view-title-label" class="hidden text-[8px] font-black tracking-[0.2em] text-moka-gold-deep uppercase mt-1">Dashboard Global</div>
             </div>
-            <button onclick="exportWhatsApp('all')" class="p-3 bg-stone-50 text-moka-chocolate rounded-2xl hover:bg-moka-chocolate hover:text-white transition-all border border-stone-100 shadow-sm">
+            <button onclick="exportWhatsApp('all')" class="p-3 bg-stone-50 text-moka-gold-deep rounded-2xl hover:bg-moka-gold-deep hover:text-white transition-all border border-stone-100 shadow-sm">
                 <i data-lucide="send" class="w-6 h-6"></i>
             </button>
         </header>
@@ -258,16 +262,16 @@
                         </div>
                         <div class="relative">
                             <p class="text-[9px] text-moka-taupe font-black uppercase tracking-widest">Score Daily</p>
-                            <h4 id="dash-daily-stat" class="text-3xl font-black text-moka-chocolate">0%</h4>
+                            <h4 id="dash-daily-stat" class="text-3xl font-black text-moka-gold-deep">0%</h4>
                         </div>
                     </div>
-                    <div class="bg-moka-chocolate p-6 rounded-[2.5rem] shadow-xl space-y-4 relative overflow-hidden group">
+                    <div class="bg-moka-gold-gradient p-6 rounded-[2.5rem] shadow-xl space-y-4 relative overflow-hidden group">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full -mr-8 -mt-8 group-hover:scale-125 transition-transform duration-500"></div>
-                        <div class="w-12 h-12 bg-white/10 text-moka-gold-end flex items-center justify-center rounded-2xl relative">
+                        <div class="w-12 h-12 bg-white/10 text-white flex items-center justify-center rounded-2xl relative">
                             <i data-lucide="bar-chart" class="w-6 h-6"></i>
                         </div>
                         <div class="relative">
-                            <p class="text-[9px] text-white/40 font-black uppercase tracking-widest">Moyenne Weekly</p>
+                            <p class="text-[9px] text-white/60 font-black uppercase tracking-widest">Moyenne Weekly</p>
                             <h4 id="dash-weekly-stat" class="text-3xl font-black text-white">0%</h4>
                         </div>
                     </div>
@@ -276,7 +280,7 @@
                 <!-- Next Tasks Preview -->
                 <div class="space-y-5">
                     <div class="flex items-center justify-between px-2">
-                        <h3 class="text-xl font-black text-moka-chocolate tracking-tight">Focus Immédiat</h3>
+                        <h3 class="text-xl font-black text-moka-gold-deep tracking-tight">Focus Immédiat</h3>
                         <button onclick="switchView('daily')" class="text-[9px] text-moka-gold-start font-black uppercase tracking-widest hover:underline">Voir listes</button>
                     </div>
                     <div id="dashboard-tasks-list" class="space-y-4">
@@ -289,7 +293,7 @@
             <section id="view-daily" class="hidden space-y-8 fade-in">
                 <div class="flex items-center justify-between px-2">
                     <div>
-                        <h2 class="text-2xl font-black text-moka-chocolate">Moka Daily</h2>
+                        <h2 class="text-2xl font-black text-moka-gold-deep">Moka Daily</h2>
                         <p class="text-moka-taupe text-sm font-bold italic opacity-60">Le rituel de chaque matin.</p>
                     </div>
                     <button onclick="confirmReset('daily')" class="p-3 text-stone-300 hover:text-red-400 hover:bg-red-50 rounded-2xl transition-all">
@@ -298,10 +302,10 @@
                 </div>
                 
                 <form id="add-daily-form" class="space-y-3 bg-white p-4 rounded-[2rem] shadow-xl border border-stone-100">
-                    <input type="text" id="daily-input" placeholder="Nouvelle action..." class="w-full px-5 py-4 rounded-2xl bg-stone-50 focus:outline-none focus:ring-2 focus:ring-[#C59267] transition-all text-moka-chocolate font-medium placeholder-stone-300">
-                    <div class="flex space-x-3">
-                        <input type="time" id="daily-time" class="flex-1 px-5 py-3 rounded-2xl bg-stone-50 focus:outline-none focus:ring-2 focus:ring-[#C59267] transition-all text-moka-chocolate font-medium">
-                        <button type="submit" class="px-6 py-4 btn-moka-gold text-white rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all">
+                    <input type="text" id="daily-input" placeholder="Nouvelle action..." class="w-full px-5 py-4 rounded-2xl bg-stone-50 focus:outline-none focus:ring-2 focus:ring-[#C59267] transition-all text-moka-gold-deep font-medium placeholder-stone-300">
+                    <div class="flex space-x-3 items-center">
+                        <input type="time" id="daily-time" class="flex-1 px-5 py-3 rounded-2xl bg-stone-50 focus:outline-none focus:ring-2 focus:ring-[#C59267] transition-all text-moka-gold-deep font-medium">
+                        <button type="submit" class="flex items-center justify-center px-6 py-4 btn-moka-gold text-white rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all h-[52px]">
                             <i data-lucide="plus" class="w-6 h-6"></i>
                         </button>
                     </div>
@@ -316,11 +320,11 @@
             <section id="view-weekly" class="hidden space-y-8 fade-in">
                 <div class="flex items-center justify-between px-2">
                     <div>
-                        <h2 class="text-2xl font-black text-moka-chocolate">Moka Weekly</h2>
+                        <h2 class="text-2xl font-black text-moka-gold-deep">Moka Weekly</h2>
                         <p class="text-moka-taupe text-sm font-bold italic opacity-60">La vision à long terme.</p>
                     </div>
                     <div class="flex space-x-1">
-                        <button onclick="exportWhatsApp('weekly')" class="p-3 text-moka-chocolate hover:text-moka-taupe rounded-2xl transition-all" title="Exporter rapport hebdo">
+                        <button onclick="exportWhatsApp('weekly')" class="p-3 text-moka-gold-deep hover:text-moka-taupe rounded-2xl transition-all" title="Exporter rapport hebdo">
                             <i data-lucide="send" class="w-5 h-5"></i>
                         </button>
                         <button onclick="confirmReset('weekly')" class="p-3 text-stone-300 hover:text-red-400 hover:bg-red-50 rounded-2xl transition-all">
@@ -330,10 +334,10 @@
                 </div>
 
                 <form id="add-weekly-form" class="space-y-3 bg-white p-4 rounded-[2rem] shadow-xl border border-stone-100">
-                    <input type="text" id="weekly-input" placeholder="Objectif stratégique..." class="w-full px-5 py-4 rounded-2xl bg-stone-50 focus:outline-none focus:ring-2 focus:ring-[#8B5A2B] transition-all text-moka-chocolate font-medium placeholder-stone-300">
-                    <div class="flex space-x-3">
-                        <input type="text" id="weekly-day" placeholder="Jour (ex: Lundi)" class="flex-1 px-5 py-3 rounded-2xl bg-stone-50 focus:outline-none focus:ring-2 focus:ring-[#8B5A2B] transition-all text-moka-chocolate font-medium placeholder-stone-300">
-                        <button type="submit" class="px-6 py-4 bg-moka-chocolate text-white rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all">
+                    <input type="text" id="weekly-input" placeholder="Objectif stratégique..." class="w-full px-5 py-4 rounded-2xl bg-stone-50 focus:outline-none focus:ring-2 focus:ring-[#C59267] transition-all text-moka-gold-deep font-medium placeholder-stone-300">
+                    <div class="flex space-x-3 items-center">
+                        <input type="text" id="weekly-day" placeholder="Jour (ex: Lundi)" class="flex-1 px-5 py-3 rounded-2xl bg-stone-50 focus:outline-none focus:ring-2 focus:ring-[#C59267] transition-all text-moka-gold-deep font-medium placeholder-stone-300">
+                        <button type="submit" class="flex items-center justify-center px-6 py-4 btn-moka-gold text-white rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all h-[52px]">
                             <i data-lucide="plus" class="w-6 h-6"></i>
                         </button>
                     </div>
@@ -352,7 +356,7 @@
                         <img src="https://i.postimg.cc/V67FwHSr/7fad8d1f-9815-44c3-9d3b-0e8d11d95c71.png" class="w-full h-full rounded-full object-cover">
                     </div>
                     <div class="text-center">
-                        <h2 id="profile-name" class="text-3xl font-black text-moka-chocolate">Utilisateur</h2>
+                        <h2 id="profile-name" class="text-3xl font-black text-moka-gold-deep">Utilisateur</h2>
                         <p id="profile-whatsapp" class="text-moka-taupe font-bold">+212 6 XX XX XX XX</p>
                     </div>
                     <div class="w-full pt-6 border-t border-stone-50 flex flex-col space-y-4">
@@ -362,25 +366,25 @@
                         </div>
                         <div class="flex justify-between items-center px-4">
                             <span class="text-xs uppercase font-black text-stone-400">Édition</span>
-                            <span class="text-[10px] font-black text-moka-chocolate uppercase">Moka V2 2026</span>
+                            <span class="text-[10px] font-black text-moka-gold-deep uppercase">Moka V2 2026</span>
                         </div>
                     </div>
-                    <button onclick="toggleProfileEdit(true)" class="w-full py-4 rounded-2xl bg-stone-50 text-moka-chocolate font-black uppercase text-xs tracking-widest border border-stone-100 hover:bg-white transition-all">
+                    <button onclick="toggleProfileEdit(true)" class="w-full py-4 rounded-2xl bg-stone-50 text-moka-gold-deep font-black uppercase text-xs tracking-widest border border-stone-100 hover:bg-white transition-all">
                         Modifier mon profil
                     </button>
                 </div>
 
                 <!-- Profile Edit Form (Hidden by default) -->
                 <div id="profile-edit-card" class="hidden bg-white p-8 rounded-[2.5rem] shadow-xl border border-stone-50 space-y-6">
-                    <h3 class="text-xl font-black text-moka-chocolate">Mise à jour du Profil</h3>
+                    <h3 class="text-xl font-black text-moka-gold-deep">Mise à jour du Profil</h3>
                     <form id="profile-edit-form" class="space-y-4 text-left">
                         <div>
                             <label class="block text-[10px] uppercase tracking-widest text-moka-taupe font-black mb-1">Nouveau Nom</label>
-                            <input type="text" id="edit-name" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3 text-moka-chocolate font-medium">
+                            <input type="text" id="edit-name" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3 text-moka-gold-deep font-medium">
                         </div>
                         <div>
                             <label class="block text-[10px] uppercase tracking-widest text-moka-taupe font-black mb-1">WhatsApp</label>
-                            <input type="tel" id="edit-whatsapp" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3 text-moka-chocolate font-medium">
+                            <input type="tel" id="edit-whatsapp" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3 text-moka-gold-deep font-medium">
                         </div>
                         <div class="flex space-x-3 pt-2">
                             <button type="button" onclick="toggleProfileEdit(false)" class="flex-1 py-4 rounded-xl bg-stone-100 text-stone-500 font-bold uppercase text-xs tracking-widest">Annuler</button>
@@ -390,7 +394,7 @@
                 </div>
 
                 <div class="space-y-3">
-                    <button onclick="logout()" class="w-full py-5 rounded-[2rem] bg-moka-chocolate text-white font-black uppercase tracking-widest transition-all hover:brightness-110 shadow-lg">
+                    <button onclick="logout()" class="w-full py-5 rounded-[2rem] bg-moka-gold-gradient text-white font-black uppercase tracking-widest transition-all hover:brightness-110 shadow-lg">
                         Changer de profil
                     </button>
                     <button onclick="logout()" class="w-full py-5 rounded-[2rem] bg-red-50 text-red-600 font-black uppercase tracking-widest transition-all hover:bg-red-100">
@@ -406,7 +410,7 @@
             <div class="flex flex-col items-center justify-center space-y-4">
                 <img src="https://i.postimg.cc/V67FwHSr/7fad8d1f-9815-44c3-9d3b-0e8d11d95c71.png" alt="Moka Logo Footer" class="logo-footer">
                 <div class="space-y-1">
-                    <h4 class="text-moka-chocolate font-black tracking-[0.2em] uppercase text-sm">Moka by Rayane</h4>
+                    <h4 class="text-moka-gold-deep font-black tracking-[0.2em] uppercase text-sm">Moka by Rayane</h4>
                     <p class="text-moka-taupe text-[10px] font-bold opacity-60 uppercase tracking-[0.3em]">L'excellence est un rituel</p>
                 </div>
             </div>
@@ -419,8 +423,8 @@
     </div>
 
     <!-- Notification / Toast -->
-    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 px-8 py-4 bg-moka-chocolate text-white rounded-full shadow-2xl z-[100] opacity-0 pointer-events-none transition-all duration-500 transform translate-y-10 flex items-center space-x-3 border border-white/5">
-        <i data-lucide="check-circle" class="w-5 h-5 text-moka-gold-end"></i>
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 px-8 py-4 bg-moka-gold-gradient text-white rounded-full shadow-2xl z-[100] opacity-0 pointer-events-none transition-all duration-500 transform translate-y-10 flex items-center space-x-3 border border-white/5">
+        <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
         <span class="font-bold text-sm">Synchronisation effectuée</span>
     </div>
 
@@ -508,10 +512,6 @@
 
         function saveProfileEdits(name, whatsapp) {
             if (!name || !whatsapp) return;
-            
-            // If name changes, we theoretically have to handle DB migration if we want,
-            // but for simplicity we update the session and keeping the current DB key.
-            // Requirement says "modifier mon profil", not "reset data".
             
             const updatedUser = { ...currentUser, name: name.trim(), whatsapp: whatsapp.trim() };
             currentUser = updatedUser;
@@ -632,9 +632,9 @@
                 container.innerHTML = `
                     <div class="text-center py-16 opacity-30">
                         <div class="mb-4 inline-block bg-white p-6 rounded-full shadow-sm border border-stone-100">
-                             <i data-lucide="coffee" class="w-10 h-10 text-moka-chocolate"></i>
+                             <i data-lucide="coffee" class="w-10 h-10 text-moka-gold-deep"></i>
                         </div>
-                        <p class="font-black text-moka-chocolate uppercase text-[10px] tracking-widest italic">Aucune donnée pour le moment.</p>
+                        <p class="font-black text-moka-gold-deep uppercase text-[10px] tracking-widest italic">Aucune donnée pour le moment.</p>
                     </div>
                 `;
                 return;
@@ -648,12 +648,12 @@
                 div.innerHTML = `
                     <div class="relative flex items-center justify-center">
                         <input type="checkbox" id="task-${task.id}" ${task.done ? 'checked' : ''} onchange="toggleTask('${type}', ${task.id})" class="hidden task-checkbox">
-                        <label for="task-${task.id}" class="w-8 h-8 border-2 ${task.done ? 'bg-moka-chocolate border-moka-chocolate' : 'border-stone-200'} rounded-2xl cursor-pointer flex items-center justify-center transition-all shadow-inner check-box">
+                        <label for="task-${task.id}" class="w-8 h-8 border-2 ${task.done ? 'border-transparent' : 'border-stone-200'} rounded-2xl cursor-pointer flex items-center justify-center transition-all shadow-inner check-box">
                             <i data-lucide="check" class="w-4 h-4 text-white ${task.done ? '' : 'hidden'}"></i>
                         </label>
                     </div>
                     <div class="flex-1 cursor-pointer" onclick="document.getElementById('task-${task.id}').click()">
-                        <p class="font-bold text-moka-chocolate ${task.done ? 'line-through opacity-70' : ''}">${task.title}</p>
+                        <p class="font-bold text-moka-gold-deep ${task.done ? 'line-through opacity-70' : ''}">${task.title}</p>
                         ${task.extra ? `<p class="text-[9px] font-black uppercase text-moka-gold-start tracking-wider">${task.extra}</p>` : ''}
                     </div>
                     <button onclick="deleteTask('${type}', ${task.id})" class="text-stone-300 hover:text-red-400 transition-colors p-2">
@@ -678,7 +678,7 @@
                 container.innerHTML = `
                     <div class="bg-white p-8 rounded-[2.5rem] border border-stone-50 text-center space-y-3 shadow-xl">
                         <i data-lucide="award" class="w-8 h-8 mx-auto text-moka-gold-start opacity-30"></i>
-                        <p class="font-black text-moka-chocolate text-[10px] uppercase tracking-widest italic">Productivité optimale.</p>
+                        <p class="font-black text-moka-gold-deep text-[10px] uppercase tracking-widest italic">Productivité optimale.</p>
                     </div>
                 `;
                 return;
@@ -690,16 +690,16 @@
                 div.className = "flex items-center justify-between p-5 bg-white border border-stone-50 rounded-[2.5rem] shadow-xl hover:translate-y-[-2px] transition-all duration-300";
                 div.innerHTML = `
                     <div class="flex items-center space-x-4">
-                        <div class="w-1.5 h-10 rounded-full ${isDaily ? 'bg-moka-gold-start' : 'bg-moka-chocolate'}"></div>
+                        <div class="w-1.5 h-10 rounded-full bg-moka-gold-gradient"></div>
                         <div>
-                            <p class="font-black text-moka-chocolate text-sm line-clamp-1">${task.title}</p>
+                            <p class="font-black text-moka-gold-deep text-sm line-clamp-1">${task.title}</p>
                             <p class="text-[8px] uppercase tracking-widest font-black text-moka-taupe opacity-50">
                                 ${isDaily ? 'Daily Priority' : 'Weekly Pillar'} 
                                 ${task.extra ? `• ${task.extra}` : ''}
                             </p>
                         </div>
                     </div>
-                    <button onclick="toggleTask('${isDaily ? 'daily' : 'weekly'}', ${task.id})" class="w-10 h-10 rounded-2xl bg-stone-50 flex items-center justify-center text-moka-gold-start hover:bg-moka-gold-start hover:text-white transition-all">
+                    <button onclick="toggleTask('${isDaily ? 'daily' : 'weekly'}', ${task.id})" class="w-10 h-10 rounded-2xl bg-stone-50 flex items-center justify-center text-moka-gold-start hover:bg-moka-gold-gradient hover:text-white transition-all">
                         <i data-lucide="check" class="w-5 h-5"></i>
                     </button>
                 `;
