@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js for Diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
         :root {
@@ -209,6 +211,7 @@
                         <span class="font-bold">Dashboard Global</span>
                     </button>
                     <button onclick="switchView('daily')" class="w-full flex items-center space-x-4 p-4 rounded-2xl hover:bg-stone-50 transition-all text-moka-taupe hover:text-moka-gold-deep group text-left">
+                        <i data-lucide="sun" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
                         <span class="font-bold">Moka Daily</span>
                     </button>
                     <button onclick="switchView('weekly')" class="w-full flex items-center space-x-4 p-4 rounded-2xl hover:bg-stone-50 transition-all text-moka-taupe hover:text-moka-gold-deep group">
@@ -274,6 +277,26 @@
                             <p class="text-[9px] text-white/60 font-black uppercase tracking-widest">Moyenne Weekly</p>
                             <h4 id="dash-weekly-stat" class="text-3xl font-black text-white">0%</h4>
                         </div>
+                    </div>
+                </div>
+
+                <!-- DIAGRAM SECTION -->
+                <div class="bg-white p-6 rounded-[2.5rem] shadow-xl card-shadow border border-stone-50 space-y-4">
+                    <div class="flex items-center justify-between px-2">
+                        <h3 class="text-sm font-black text-moka-gold-deep uppercase tracking-widest">Analyse de Performance</h3>
+                        <div class="flex space-x-2">
+                            <div class="flex items-center space-x-1">
+                                <div class="w-2 h-2 rounded-full bg-[#C59267]"></div>
+                                <span class="text-[8px] font-bold uppercase text-stone-400">Daily</span>
+                            </div>
+                            <div class="flex items-center space-x-1">
+                                <div class="w-2 h-2 rounded-full bg-[#E8D1B5]"></div>
+                                <span class="text-[8px] font-bold uppercase text-stone-400">Weekly</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative h-64 w-full px-2">
+                        <canvas id="productivityChart"></canvas>
                     </div>
                 </div>
 
@@ -435,6 +458,7 @@
             daily: [],
             weekly: []
         };
+        let productivityChart = null;
 
         const STORAGE_PREFIX = "moka_prod_sys_v2_";
 
@@ -456,7 +480,6 @@
         // --- CORE FUNCTIONS ---
 
         function init() {
-            // Splash delay to check persistence
             setTimeout(() => {
                 const savedUser = localStorage.getItem('moka_session_user_v2');
                 screens.splash.classList.add('opacity-0', 'pointer-events-none');
@@ -467,7 +490,63 @@
                     screens.login.classList.remove('hidden');
                 }
                 lucide.createIcons();
+                initChart();
             }, 1200);
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('productivityChart').getContext('2d');
+            productivityChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Daily Completion', 'Weekly Vision'],
+                    datasets: [{
+                        label: 'Progression (%)',
+                        data: [0, 0],
+                        backgroundColor: ['#C59267', '#E8D1B5'],
+                        borderRadius: 12,
+                        borderSkipped: false,
+                        barThickness: 40
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#7D5A2F',
+                            titleFont: { family: 'Montserrat', weight: 'bold' },
+                            bodyFont: { family: 'Montserrat' },
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return `Complétion: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { display: false },
+                            ticks: { 
+                                font: { size: 10, family: 'Montserrat', weight: 'bold' },
+                                color: '#A67C52'
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { 
+                                font: { size: 10, family: 'Montserrat', weight: 'bold' },
+                                color: '#7D5A2F'
+                            }
+                        }
+                    }
+                }
+            });
         }
 
         function loginAs(user) {
@@ -482,7 +561,6 @@
                 state = { daily: [], weekly: [] };
             }
 
-            // UI Refresh
             document.getElementById('sidebar-user-name').innerText = user.name;
             document.getElementById('profile-name').innerText = user.name;
             document.getElementById('profile-whatsapp').innerText = '+' + user.whatsapp;
@@ -512,16 +590,12 @@
 
         function saveProfileEdits(name, whatsapp) {
             if (!name || !whatsapp) return;
-            
             const updatedUser = { ...currentUser, name: name.trim(), whatsapp: whatsapp.trim() };
             currentUser = updatedUser;
             localStorage.setItem('moka_session_user_v2', JSON.stringify(currentUser));
-            
-            // Refresh UI
             document.getElementById('sidebar-user-name').innerText = currentUser.name;
             document.getElementById('profile-name').innerText = currentUser.name;
             document.getElementById('profile-whatsapp').innerText = '+' + currentUser.whatsapp;
-            
             toggleProfileEdit(false);
             showToast("Profil mis à jour");
         }
@@ -578,7 +652,7 @@
             const newTask = {
                 id: Date.now(),
                 title: title.trim(),
-                extra: extra || "", // Time for daily, Day for weekly
+                extra: extra || "",
                 done: false,
                 createdAt: new Date()
             };
@@ -613,8 +687,6 @@
             }
         }
 
-        // --- UI UPDATES ---
-
         function updateAllUI() {
             renderList('daily');
             renderList('weekly');
@@ -641,7 +713,6 @@
             }
 
             const sorted = [...state[type]].sort((a,b) => a.done - b.done);
-
             sorted.forEach(task => {
                 const div = document.createElement('div');
                 div.className = `flex items-center space-x-4 p-5 rounded-3xl border transition-all duration-300 ${task.done ? 'bg-stone-50 border-transparent opacity-40 scale-[0.97]' : 'bg-white border-stone-100 shadow-lg'}`;
@@ -732,6 +803,12 @@
             const wStat = document.getElementById('dash-weekly-stat');
             if(dStat) dStat.innerText = dailyP + '%';
             if(wStat) wStat.innerText = weeklyP + '%';
+
+            // Update Diagram
+            if (productivityChart) {
+                productivityChart.data.datasets[0].data = [dailyP, weeklyP];
+                productivityChart.update();
+            }
         }
 
         function showToast(msg) {
@@ -747,29 +824,24 @@
 
         function exportWhatsApp(scope = 'all') {
             if (!currentUser) return;
-            
             let message = `☕ *MOKA by RAYANE - RAPPORT 2026*\n`;
             message += `------------------------------------\n`;
             message += `👤 *Identité :* ${currentUser.name}\n`;
             message += `📅 *Rapport du :* ${new Date().toLocaleDateString()}\n\n`;
-            
             if(scope === 'all' || scope === 'daily') {
                 message += `✅ *MOKA DAILY (${document.getElementById('dash-daily-stat').innerText})*\n`;
                 state.daily.forEach(t => message += `${t.done ? '◼' : '◻'} [${t.extra || '--:--'}] ${t.title}\n`);
                 message += `\n`;
             }
-            
             if(scope === 'all' || scope === 'weekly') {
                 message += `🎯 *MOKA WEEKLY (${document.getElementById('dash-weekly-stat').innerText})*\n`;
                 state.weekly.forEach(t => message += `${t.done ? '◼' : '◻'} (${t.extra || '---'}) ${t.title}\n`);
             }
-            
             const encoded = encodeURIComponent(message);
             window.open(`https://wa.me/${currentUser.whatsapp}?text=${encoded}`);
         }
 
         // --- EVENT LISTENERS ---
-
         document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const name = document.getElementById('login-name').value;
@@ -806,7 +878,6 @@
         });
 
         window.onload = init;
-
     </script>
 </body>
 </html>
